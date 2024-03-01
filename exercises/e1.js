@@ -3,14 +3,32 @@
  * Please, make sure to read the "01 Promise-constructor.md" file in exercise-info folder before you start!
  **/
 
+
+//I HAD TO RETURN THE ACTUAL PROMISE AND I BEEN HERE STRUGGLIN LIKE A MFER
+
 export const createOneSecondPromise = () => {
   // Return a Promise that resolves to the string 'The PROMISE was RESOLVED' in 1 second
   // make sure to use the promise constructor described in The Markdown For this exercise
+  return new Promise((res) => {
+    setTimeout(() => {
+      res('The PROMISE was RESOLVED');
+    }, 1000);
+  });  
 };
+
 
 export const logMessageAfterOneSecond = (message) => {
   // use the 'createOneSecondPromise' function, and a `onFulfilled` callback with a `.then` method
   // to log the `message` parameter we pass in after one second
+
+  const promise = new Promise((res, rej) => {
+    setTimeout(() => {
+      res(message);
+      const onFulfilled = (message) = message;
+      promise.then(console.log(onFulfilled));
+    }, 1000);
+  });
+  
 };
 
 export const logMessageAfterOneSecondAwait = async (message) => {
@@ -18,6 +36,15 @@ export const logMessageAfterOneSecondAwait = async (message) => {
   // to create a function that logs a message after one second
   // in an async function it automatically returns a promise no matter what you return, so you don't need to
   // worry about what you return
+
+  const newPromise = new Promise((res, rej) => {
+    setTimeout(() => {
+      res(message);
+      const onFulfilled = (message) = message;
+      newPromise.then(console.log(onFulfilled))
+    }, 1000);
+  })
+
 };
 
 // === TEST YOURSELF ===
