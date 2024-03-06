@@ -11,33 +11,17 @@ export const getFirstPromiseOrFail = (promises) => {
 };
 
 export const getQuantityOfRejectedPromises = (promises) => {
-  //*  write code to pass test ⬇ ️
-  let count = 0;
-  
-  return Promise.allSettled(promises)
-    .then((results) => {
-      results.forEach((result) => {
-        if (result.status === 'rejected') {
-          count += 1;
-        }
-      });
-      return count; 
-    });
+  //*  write code to pass test ⬇ ️  
+  return Promise.allSettled(promises).then(
+    (results) => results.filter((result) => result.status === 'rejected').length
+    );
 };
 
 export const getQuantityOfFulfilledPromises = (promises) => {
   //*  write code to pass test ⬇ ️
-  let count = 0;
-  
-  return Promise.allSettled(promises)
-    .then((results) => {
-      results.forEach((result) => {
-        if (result.status === 'fulfilled') {
-          count += 1;
-        }
-      });
-      return count; 
-    });
+  return Promise.allSettled(promises).then(
+    (results) => results.filter((result) => result.status === 'fulfilled').length
+    );
 };
 
 //!  ⬇ ⬇ ⬇ ⬇ Don't Edit This Array ⬇ ⬇ ⬇ ⬇
@@ -74,13 +58,6 @@ export const fetchAllCharactersByIds = async (ids) => {
   const fetchPeople = ids.map((id) => fetchCharacterById(id));
   
   return Promise.all(fetchPeople)
-    .then((characters) => {
-      if (characters.includes(undefined)) {
-        return [];
-      }
-      return characters;
-    })
-    .catch((error) => {
-      return [];
-    });
+    .then((characters) => characters)
+    .catch(() => []);
 };

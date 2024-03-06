@@ -29,7 +29,7 @@ export const usersUrl = "http://localhost:3000/users/";
 
 
 const getLoginList = (data) => {
-    return data.map(user => user.login)
+    return data.map((user) => user.login)
 };
 
 
@@ -57,8 +57,8 @@ const getData = fetch(usersUrl); //fetch is a promise
 // Your code goes here ...
 export const result = getData
    .then((res) => res.json())
-   .then((d) => {
-        const logins = getLoginList(d)
+   .then((data) => {
+        const logins = getLoginList(data)
         console.log(logins)
         return logins;
    })

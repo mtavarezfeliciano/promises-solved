@@ -21,13 +21,9 @@ export const logMessageAfterOneSecond = (message) => {
   // use the 'createOneSecondPromise' function, and a `onFulfilled` callback with a `.then` method
   // to log the `message` parameter we pass in after one second
 
-  const promise = new Promise((res, rej) => {
-    setTimeout(() => {
-      res(message);
-      const onFulfilled = (message) = message;
-      promise.then(console.log(onFulfilled));
-    }, 1000);
-  });
+  const onFulfilled = createOneSecondPromise()
+    .then(() => console.log(message));
+  return onFulfilled;
   
 };
 
@@ -37,13 +33,7 @@ export const logMessageAfterOneSecondAwait = async (message) => {
   // in an async function it automatically returns a promise no matter what you return, so you don't need to
   // worry about what you return
 
-  const newPromise = new Promise((res, rej) => {
-    setTimeout(() => {
-      res(message);
-      const onFulfilled = (message) = message;
-      newPromise.then(console.log(onFulfilled))
-    }, 1000);
-  })
+  await logMessageAfterOneSecond(message);
 
 };
 

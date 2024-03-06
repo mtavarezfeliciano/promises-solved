@@ -32,16 +32,11 @@ export const getPromise = (boolean) => {
  */
 
 export const handlePromise = (promise) => {
-  const onFulfilled = promise;
-  const onRejected = "Uh Oh";
+  const onFulfilled = (res) => res;
+  const onRejected = () => "Uh Oh";
   // Your code goes here...
-  return new Promise((resolve) => {
-    promise.then((result) => {
-      result = resolve(onFulfilled);
-    }).catch(() => {
-      resolve(onRejected);
-    });
-  })
+  return promise
+    .then(onFulfilled, onRejected);
 };
 
 // === TEST YOURSELF ===

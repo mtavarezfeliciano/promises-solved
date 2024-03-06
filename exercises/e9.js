@@ -40,11 +40,12 @@ export function alwaysThrows() {
 
 export function onReject(err) {
   // Your code goes here...
-  if (err instanceof Object) {
-    console.log(err.message);
-  } else {
-    console.log(err.value);
-  };
+  const messageToLog = err.message ? console.log(err.message) : console.log(err);
+  // if (err instanceof Object) {
+  //   console.log(err.message);
+  // } else {
+  //   console.log(err.value);
+  // };
 };
 
 /**
@@ -69,7 +70,7 @@ export function onReject(err) {
  */
 
 // Your code goes here...
-export const promise = Promise.resolve()
+export const promise = Promise.resolve(1)
                         .then(iterate)//1
                         .then(iterate)//2 
                         .then(iterate)//3
